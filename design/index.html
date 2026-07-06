@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WorldLeader Research — 全球权力传承研究</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== SEED TOKENS ===== */
+:root {
+  /* Light theme primitives */
+  --lt-bg: #FAF7F2;
+  --lt-fg: #1A1816;
+  --lt-primary: #7A5C3A;
+  --lt-accent: #2E5440;
+  --lt-surface: #F0ECE4;
+  --lt-gold: #B89A5A;
+  --lt-border: #D7D2C8;
+  --lt-muted: #6B6560;
+  --lt-cat-china: #9B3A2A;
+  --lt-cat-eastasia: #4A6741;
+  --lt-cat-europe: #3A5A8C;
+  --lt-cat-islamic: #8C6B2A;
+  --lt-cat-religion: #6B4A8C;
+  --lt-cat-modern: #2A7A8C;
+  --lt-cat-comparative: #7A5C3A;
+  /* Dark theme primitives */
+  --dk-bg: #1A1816;
+  --dk-fg: #E8E4DD;
+  --dk-primary: #C9A87C;
+  --dk-accent: #7BAF82;
+  --dk-surface: #252320;
+  --dk-gold: #D4B678;
+  --dk-border: #3D3935;
+  --dk-muted: #9A958E;
+  --dk-cat-china: #E09080;
+  --dk-cat-eastasia: #90C090;
+  --dk-cat-europe: #80A8D8;
+  --dk-cat-islamic: #D8B870;
+  --dk-cat-religion: #B898D8;
+  --dk-cat-modern: #70C8D8;
+  --dk-cat-comparative: #C9A87C;
+  /* Active seed tokens (light by default) */
+  --seed-bg: var(--lt-bg);
+  --seed-fg: var(--lt-fg);
+  --seed-primary: var(--lt-primary);
+  --seed-accent: var(--lt-accent);
+  --seed-surface: var(--lt-surface);
+  --seed-radius: 3px;
+  --seed-gold: var(--lt-gold);
+  --seed-border: var(--lt-border);
+  --seed-muted: var(--lt-muted);
+  --cat-china: var(--lt-cat-china);
+  --cat-eastasia: var(--lt-cat-eastasia);
+  --cat-europe: var(--lt-cat-europe);
+  --cat-islamic: var(--lt-cat-islamic);
+  --cat-religion: var(--lt-cat-religion);
+  --cat-modern: var(--lt-cat-modern);
+  --cat-comparative: var(--lt-cat-comparative);
+}
+
+[data-theme="dark"] {
+  --seed-bg: var(--dk-bg);
+  --seed-fg: var(--dk-fg);
+  --seed-primary: var(--dk-primary);
+  --seed-accent: var(--dk-accent);
+  --seed-surface: var(--dk-surface);
+  --seed-gold: var(--dk-gold);
+  --seed-border: var(--dk-border);
+  --seed-muted: var(--dk-muted);
+  --cat-china: var(--dk-cat-china);
+  --cat-eastasia: var(--dk-cat-eastasia);
+  --cat-europe: var(--dk-cat-europe);
+  --cat-islamic: var(--dk-cat-islamic);
+  --cat-religion: var(--dk-cat-religion);
+  --cat-modern: var(--dk-cat-modern);
+  --cat-comparative: var(--dk-cat-comparative);
+}
+
+/* ===== SEMANTIC TOKENS ===== */
+:root, [data-theme="dark"] {
+  --bg-page: var(--seed-bg);
+  --bg-surface: var(--seed-surface);
+  --bg-muted: color-mix(in srgb, var(--seed-surface) 70%, var(--seed-bg));
+  --text-primary: var(--seed-fg);
+  --text-secondary: var(--seed-muted);
+  --text-inverse: var(--seed-bg);
+  --color-accent: var(--seed-primary);
+  --color-accent-secondary: var(--seed-accent);
+  --color-gold: var(--seed-gold);
+  --border-default: var(--seed-border);
+  --border-subtle: color-mix(in srgb, var(--seed-border) 50%, transparent);
+  --radius-sm: var(--seed-radius);
+  --radius-md: calc(var(--seed-radius) * 2);
+  --radius-lg: calc(var(--seed-radius) * 3);
+  --shadow-soft: 0 1px 3px color-mix(in srgb, var(--seed-fg) 6%, transparent);
+  --shadow-raised: 0 4px 12px color-mix(in srgb, var(--seed-fg) 8%, transparent);
+  --font-display: 'Source Serif 4', 'Noto Serif SC', Georgia, 'Times New Roman', serif;
+  --font-body: 'Source Serif 4', 'Noto Serif SC', Georgia, 'Times New Roman', serif;
+  --space-section: clamp(80px, 10vw, 140px);
+  --space-card: 24px;
+  --content-width: 1100px;
+  --reading-width: 680px;
+  --base-font-size: 16px;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-body);
+  font-size: var(--base-font-size);
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--bg-page);
+  transition: background 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+a { color: var(--color-accent); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--color-gold); }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+ul, ol { list-style: none; }
+
+/* ===== UTILITIES ===== */
+.container { max-width: var(--content-width); margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+.section-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: var(--reading-width);
+}
+.fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== HEADER ===== */
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 clamp(20px, 4vw, 48px);
+  transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.header.scrolled {
+  background: color-mix(in srgb, var(--bg-page) 92%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--border-subtle);
+}
+.header-inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.header-brand {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+.header-brand span { color: var(--text-secondary); font-weight: 400; margin-left: 8px; font-size: 14px; }
+.header-nav { display: flex; align-items: center; gap: 32px; }
+.header-nav a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+  position: relative;
+}
+.header-nav a:hover { color: var(--text-primary); }
+.header-nav a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+  background: var(--color-accent); transition: width 0.25s ease;
+}
+.header-nav a:hover::after { width: 100%; }
+
+/* Theme Toggle */
+.theme-toggle {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-secondary);
+  transition: background 0.2s, color 0.2s;
+  position: relative;
+}
+.theme-toggle:hover { background: var(--bg-surface); color: var(--text-primary); }
+.theme-toggle svg { width: 18px; height: 18px; transition: opacity 0.3s, transform 0.3s; }
+.theme-toggle .icon-moon { position: absolute; opacity: 0; transform: rotate(-90deg) scale(0.5); }
+[data-theme="dark"] .theme-toggle .icon-sun { opacity: 0; transform: rotate(90deg) scale(0.5); }
+[data-theme="dark"] .theme-toggle .icon-moon { opacity: 1; transform: rotate(0deg) scale(1); }
+
+/* Mobile menu button */
+.mobile-menu-btn { display: none; width: 36px; height: 36px; color: var(--text-primary); }
+
+/* ===== HERO ===== */
+.hero {
+  padding-top: 140px;
+  padding-bottom: var(--space-section);
+  position: relative;
+}
+.hero-content { max-width: 720px; }
+.hero-label {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--color-accent); margin-bottom: 24px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.5vw, 56px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  margin-bottom: 28px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+.hero-desc {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+.hero-stats {
+  display: flex; gap: 48px; flex-wrap: wrap;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-default);
+}
+.hero-stat-value {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.hero-stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  letter-spacing: 0.01em;
+}
+
+/* Hero SVG Timeline */
+.hero-timeline-svg {
+  margin-top: 64px;
+  width: 100%;
+  overflow: visible;
+}
+.tl-china { fill: var(--cat-china); }
+.tl-eastasia { fill: var(--cat-eastasia); }
+.tl-europe { fill: var(--cat-europe); }
+.tl-islamic { fill: var(--cat-islamic); }
+.tl-modern { fill: var(--cat-modern); }
+.tl-dot-china { fill: var(--cat-china); }
+.tl-dot-europe { fill: var(--cat-europe); }
+.tl-dot-islamic { fill: var(--cat-islamic); }
+.tl-dot-eastasia { fill: var(--cat-eastasia); }
+.tl-dot-modern { fill: var(--cat-modern); }
+
+/* ===== SCOPE SECTION ===== */
+.scope {
+  padding: var(--space-section) 0;
+  border-top: 1px solid var(--border-default);
+}
+.scope-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 48px;
+}
+.scope-card {
+  padding: 32px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+.scope-card:hover {
+  box-shadow: var(--shadow-raised);
+  transform: translateY(-2px);
+}
+.scope-card-icon {
+  width: 48px; height: 48px;
+  margin-bottom: 20px;
+  color: var(--color-accent);
+}
+.scope-card-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+.scope-card-desc {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+/* Coverage Chart */
+.coverage-chart {
+  margin-top: 56px;
+  padding: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+}
+.coverage-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+.coverage-bars { display: flex; flex-direction: column; gap: 16px; }
+.coverage-row { display: flex; align-items: center; gap: 16px; }
+.coverage-label { width: 120px; font-size: 13px; color: var(--text-secondary); text-align: right; flex-shrink: 0; }
+.coverage-bar-track { flex: 1; height: 8px; background: var(--border-subtle); border-radius: 4px; overflow: hidden; }
+.coverage-bar-fill {
+  height: 100%; border-radius: 4px;
+  background: var(--color-accent);
+  transition: width 1s ease-out;
+}
+.coverage-bar-fill.secondary { background: var(--color-accent-secondary); }
+.coverage-bar-fill.gold { background: var(--color-gold); }
+.coverage-count { width: 40px; font-size: 13px; font-weight: 500; color: var(--text-primary); }
+
+/* ===== PAPERS ARCHIVE ===== */
+.papers {
+  padding: var(--space-section) 0;
+  border-top: 1px solid var(--border-default);
+}
+.papers-filters {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-top: 40px; margin-bottom: 36px;
+}
+.filter-btn {
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: 100px;
+  transition: all 0.2s;
+  letter-spacing: 0.01em;
+}
+.filter-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+.filter-btn.active {
+  color: var(--text-inverse);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.papers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+.paper-card {
+  padding: 28px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--bg-page);
+  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+  cursor: default;
+}
+.paper-card:hover {
+  box-shadow: var(--shadow-raised);
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+}
+.paper-card.hidden { display: none; }
+.paper-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent-secondary);
+  padding: 3px 10px;
+  border: 1px solid color-mix(in srgb, var(--color-accent-secondary) 30%, transparent);
+  border-radius: 100px;
+  margin-bottom: 14px;
+}
+.paper-tag.cat-china { color: var(--cat-china); border-color: color-mix(in srgb, var(--cat-china) 30%, transparent); }
+.paper-tag.cat-eastasia { color: var(--cat-eastasia); border-color: color-mix(in srgb, var(--cat-eastasia) 30%, transparent); }
+.paper-tag.cat-europe { color: var(--cat-europe); border-color: color-mix(in srgb, var(--cat-europe) 30%, transparent); }
+.paper-tag.cat-islamic { color: var(--cat-islamic); border-color: color-mix(in srgb, var(--cat-islamic) 30%, transparent); }
+.paper-tag.cat-religion { color: var(--cat-religion); border-color: color-mix(in srgb, var(--cat-religion) 30%, transparent); }
+.paper-tag.cat-modern { color: var(--cat-modern); border-color: color-mix(in srgb, var(--cat-modern) 30%, transparent); }
+.paper-tag.cat-comparative { color: var(--cat-comparative); border-color: color-mix(in srgb, var(--cat-comparative) 30%, transparent); }
+.paper-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.paper-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* ===== PHILOSOPHY ===== */
+.philosophy {
+  padding: var(--space-section) 0;
+  border-top: 1px solid var(--border-default);
+  position: relative;
+}
+.philosophy-ornament {
+  position: absolute;
+  top: 50%; right: -40px;
+  transform: translateY(-50%);
+  opacity: 0.06;
+  color: var(--text-primary);
+  pointer-events: none;
+}
+.philosophy-quotes {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  max-width: 780px;
+}
+.philosophy-quote {
+  position: relative;
+  padding-left: 32px;
+  border-left: 2px solid var(--color-gold);
+}
+.philosophy-quote-text {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+.philosophy-quote-source {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+.philosophy-method {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+.method-item {
+  padding: 28px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+}
+.method-item-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+.method-item-desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 48px 0;
+  border-top: 1px solid var(--border-default);
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.footer-brand-sub {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+.footer-links { display: flex; gap: 24px; }
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text-primary); }
+.footer-divider-svg {
+  width: 100%;
+  margin-bottom: 32px;
+  color: var(--border-default);
+}
+.footer-copyright {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 24px;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .scope-grid { grid-template-columns: 1fr; }
+  .philosophy-method { grid-template-columns: 1fr; }
+  .hero-stats { gap: 32px; }
+  .coverage-label { width: 90px; font-size: 12px; }
+}
+@media (max-width: 768px) {
+  .header-nav a.nav-link-desktop { display: none; }
+  .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
+  .hero { padding-top: 110px; }
+  .hero-title { font-size: clamp(28px, 7vw, 40px); }
+  .papers-grid { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; gap: 20px; }
+  .philosophy-quote { padding-left: 20px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .philosophy-ornament { display: none; }
+}
+
+/* Mobile nav overlay */
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: color-mix(in srgb, var(--bg-page) 96%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.mobile-nav-overlay.open { display: flex; }
+.mobile-nav-overlay a {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.mobile-nav-close {
+  position: absolute;
+  top: 16px; right: 20px;
+  width: 36px; height: 36px;
+  color: var(--text-primary);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header" id="header" data-component="site-header">
+  <div class="header-inner">
+    <div class="header-brand">WorldLeader<span>Research</span></div>
+    <nav class="header-nav" data-component="main-nav">
+      <a href="#research" class="nav-link-desktop">Research</a>
+      <a href="#scope" class="nav-link-desktop">Scope</a>
+      <a href="#philosophy" class="nav-link-desktop">Philosophy</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4.5"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav-overlay" id="mobileNav" data-component="mobile-nav">
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <a href="#research" onclick="closeMobileNav()">Research</a>
+  <a href="#scope" onclick="closeMobileNav()">Scope</a>
+  <a href="#philosophy" onclick="closeMobileNav()">Philosophy</a>
+</div>
+
+<main data-component="main-content">
+<!-- ===== HERO ===== -->
+<section class="hero" id="research" data-component="hero-section">
+  <div class="container">
+    <div class="hero-content fade-in" data-component="hero-intro">
+      <div class="hero-label">Comparative Political Research</div>
+      <h1 class="hero-title">权力如何传承，<br>文明便如何<em>延续</em></h1>
+      <p class="hero-desc">系统考察跨越两千余年、横跨东西方文明的最高权力交接制度——从汉代的嫡长子继承制到现代民主国家的宪政更替，揭示制度设计的深层逻辑与历史教训。</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value">31</div>
+          <div class="hero-stat-label">研究论文</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">7</div>
+          <div class="hero-stat-label">文明领域</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">2,000+</div>
+          <div class="hero-stat-label">年跨度</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">4</div>
+          <div class="hero-stat-label">大洲覆盖</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero SVG: Civilization Timeline -->
+    <div class="hero-timeline-svg fade-in" aria-label="Civilization research timeline spanning from ancient China to modern nation-states">
+      <svg viewBox="0 0 1100 180" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Research timeline from 200 BCE to 2024 CE">
+        <!-- Timeline axis -->
+        <line x1="60" y1="90" x2="1040" y2="90" stroke="currentColor" stroke-width="1" opacity="0.15"/>
+        <!-- Era markers -->
+        <line x1="60" y1="82" x2="60" y2="98" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+        <text x="60" y="116" text-anchor="middle" fill="currentColor" opacity="0.35" font-size="10" font-family="'Source Serif 4', serif">200 BCE</text>
+        <line x1="305" y1="82" x2="305" y2="98" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+        <text x="305" y="116" text-anchor="middle" fill="currentColor" opacity="0.35" font-size="10" font-family="'Source Serif 4', serif">500 CE</text>
+        <line x1="550" y1="82" x2="550" y2="98" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+        <text x="550" y="116" text-anchor="middle" fill="currentColor" opacity="0.35" font-size="10" font-family="'Source Serif 4', serif">1000</text>
+        <line x1="795" y1="82" x2="795" y2="98" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+        <text x="795" y="116" text-anchor="middle" fill="currentColor" opacity="0.35" font-size="10" font-family="'Source Serif 4', serif">1500</text>
+        <line x1="1040" y1="82" x2="1040" y2="98" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+        <text x="1040" y="116" text-anchor="middle" fill="currentColor" opacity="0.35" font-size="10" font-family="'Source Serif 4', serif">2024</text>
+
+        <!-- Civilization bars -->
+        <!-- Chinese Dynasties -->
+        <rect x="60" y="32" width="720" height="6" rx="3" class="tl-china" opacity="0.7"/>
+        <text x="55" y="37" text-anchor="end" fill="currentColor" opacity="0.5" font-size="10" font-family="'Noto Serif SC', serif">中国朝代</text>
+
+        <!-- Byzantine -->
+        <rect x="280" y="52" width="350" height="6" rx="3" class="tl-europe" opacity="0.7"/>
+        <text x="275" y="57" text-anchor="end" fill="currentColor" opacity="0.5" font-size="10" font-family="'Noto Serif SC', serif">拜占庭</text>
+
+        <!-- Islamic -->
+        <rect x="340" y="72" width="320" height="6" rx="3" class="tl-islamic" opacity="0.7"/>
+        <text x="335" y="77" text-anchor="end" fill="currentColor" opacity="0.5" font-size="10" font-family="'Noto Serif SC', serif">伊斯兰</text>
+
+        <!-- European -->
+        <rect x="420" y="92" width="580" height="6" rx="3" class="tl-europe" opacity="0.5"/>
+        <text x="415" y="97" text-anchor="end" fill="currentColor" opacity="0.5" font-size="10" font-family="'Noto Serif SC', serif">欧洲</text>
+
+        <!-- Mongol -->
+        <rect x="480" y="112" width="180" height="6" rx="3" class="tl-islamic" opacity="0.5"/>
+        <text x="475" y="117" text-anchor="end" fill="currentColor" opacity="0.5" font-size="10" font-family="'Noto Serif SC', serif">蒙古</text>
+
+        <!-- East Asia -->
+        <rect x="360" y="132" width="540" height="6" rx="3" class="tl-eastasia" opacity="0.6"/>
+        <text x="355" y="137" text-anchor="end" fill="currentColor" opacity="0.5" font-size="10" font-family="'Noto Serif SC', serif">东亚</text>
+
+        <!-- Modern -->
+        <rect x="820" y="152" width="220" height="6" rx="3" class="tl-modern" opacity="0.7"/>
+        <text x="815" y="157" text-anchor="end" fill="currentColor" opacity="0.5" font-size="10" font-family="'Noto Serif SC', serif">现代</text>
+
+        <!-- Key event dots -->
+        <circle cx="105" cy="35" r="4" class="tl-dot-china" opacity="0.9"/>
+        <circle cx="305" cy="55" r="4" class="tl-dot-europe" opacity="0.9"/>
+        <circle cx="395" cy="75" r="4" class="tl-dot-islamic" opacity="0.9"/>
+        <circle cx="540" cy="95" r="4" class="tl-dot-europe" opacity="0.7"/>
+        <circle cx="560" cy="115" r="4" class="tl-dot-islamic" opacity="0.7"/>
+        <circle cx="660" cy="135" r="4" class="tl-dot-eastasia" opacity="0.7"/>
+        <circle cx="960" cy="155" r="4" class="tl-dot-modern" opacity="0.9"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCOPE ===== -->
+<section class="scope" id="scope" data-component="scope-section">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Research Scope</div>
+      <h2 class="section-title">研究视野与能力</h2>
+      <p class="section-subtitle">从制度设计的视角，系统解构人类文明中最核心的政治难题——权力的合法、平稳、有效转移。</p>
+    </div>
+
+    <div class="scope-grid fade-in" data-component="capability-cards">
+      <div class="scope-card">
+        <svg class="scope-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 40V14a2 2 0 012-2h8l4 4h16a2 2 0 012 2v22a2 2 0 01-2 2H10a2 2 0 01-2-2z"/>
+          <path d="M16 26h16M16 32h10"/>
+        </svg>
+        <h3 class="scope-card-title">比较制度分析</h3>
+        <p class="scope-card-desc">跨越七个文明领域、三十余项独立研究，建立全球权力传承制度的系统性比较框架，揭示制度演进的深层逻辑。</p>
+      </div>
+      <div class="scope-card">
+        <svg class="scope-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="24" r="18"/>
+          <path d="M6 24h36M24 6c-5 5-8 11-8 18s3 13 8 18c5-5 8-11 8-18s-3-13-8-18z"/>
+        </svg>
+        <h3 class="scope-card-title">跨文明视野</h3>
+        <p class="scope-card-desc">涵盖中国历代、拜占庭帝国、欧洲诸王国、伊斯兰哈里发、蒙古帝国及现代民族国家，构建东西方对照的完整谱系。</p>
+      </div>
+      <div class="scope-card">
+        <svg class="scope-card-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 38V22l12-12 12 12v16"/>
+          <path d="M20 38v-10h8v10"/>
+          <path d="M8 24l16-16 16 16"/>
+        </svg>
+        <h3 class="scope-card-title">四维评估体系</h3>
+        <p class="scope-card-desc">从继承合法性、接班人指定、不良事件与传承正常性四个维度，对每一位统治者的权力交接进行标准化评估。</p>
+      </div>
+    </div>
+
+    <!-- Coverage bar chart -->
+    <div class="coverage-chart fade-in" data-component="coverage-chart">
+      <div class="coverage-title">研究领域分布</div>
+      <div class="coverage-bars">
+        <div class="coverage-row">
+          <span class="coverage-label">中国朝代</span>
+          <div class="coverage-bar-track"><div class="coverage-bar-fill" style="width: 0%" data-width="22%"></div></div>
+          <span class="coverage-count">7</span>
+        </div>
+        <div class="coverage-row">
+          <span class="coverage-label">东亚诸国</span>
+          <div class="coverage-bar-track"><div class="coverage-bar-fill secondary" style="width: 0%" data-width="13%"></div></div>
+          <span class="coverage-count">4</span>
+        </div>
+        <div class="coverage-row">
+          <span class="coverage-label">欧洲王国</span>
+          <div class="coverage-bar-track"><div class="coverage-bar-fill" style="width: 0%" data-width="29%"></div></div>
+          <span class="coverage-count">9</span>
+        </div>
+        <div class="coverage-row">
+          <span class="coverage-label">伊斯兰世界</span>
+          <div class="coverage-bar-track"><div class="coverage-bar-fill gold" style="width: 0%" data-width="13%"></div></div>
+          <span class="coverage-count">4</span>
+        </div>
+        <div class="coverage-row">
+          <span class="coverage-label">宗教传承</span>
+          <div class="coverage-bar-track"><div class="coverage-bar-fill secondary" style="width: 0%" data-width="6%"></div></div>
+          <span class="coverage-count">2</span>
+        </div>
+        <div class="coverage-row">
+          <span class="coverage-label">现代国家</span>
+          <div class="coverage-bar-track"><div class="coverage-bar-fill" style="width: 0%" data-width="13%"></div></div>
+          <span class="coverage-count">4</span>
+        </div>
+        <div class="coverage-row">
+          <span class="coverage-label">比较研究</span>
+          <div class="coverage-bar-track"><div class="coverage-bar-fill gold" style="width: 0%" data-width="6%"></div></div>
+          <span class="coverage-count">2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PAPERS ARCHIVE ===== -->
+<section class="papers" id="papers" data-component="papers-archive">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Research Archive</div>
+      <h2 class="section-title">论文档案</h2>
+      <p class="section-subtitle">全部研究成果按文明领域分类，涵盖从古代帝国到现代国家的权力传承制度比较分析。</p>
+    </div>
+
+    <div class="papers-filters fade-in" data-component="paper-filters">
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="china">中国朝代</button>
+      <button class="filter-btn" data-filter="eastasia">东亚</button>
+      <button class="filter-btn" data-filter="europe">欧洲</button>
+      <button class="filter-btn" data-filter="islamic">伊斯兰</button>
+      <button class="filter-btn" data-filter="religion">宗教</button>
+      <button class="filter-btn" data-filter="modern">现代</button>
+      <button class="filter-btn" data-filter="comparative">比较</button>
+    </div>
+
+    <div class="papers-grid" id="papersGrid" data-component="paper-grid">
+      <!-- China -->
+      <article class="paper-card" data-category="china" data-component="paper-card-china">
+        <span class="paper-tag cat-china">中国朝代</span>
+        <h3 class="paper-title">汉代皇位传承研究</h3>
+        <p class="paper-desc">嫡长子继承制的确立与五大结构性缺陷——外戚专权、幼主即位、权臣废帝的制度性困境分析。</p>
+      </article>
+      <article class="paper-card" data-category="china">
+        <span class="paper-tag cat-china">中国朝代</span>
+        <h3 class="paper-title">唐代皇位传承研究</h3>
+        <p class="paper-desc">名义沿用嫡长制、实际奉行丛林法则——八次重大政变与宦官废立九帝的制度真空。</p>
+      </article>
+      <article class="paper-card" data-category="china">
+        <span class="paper-tag cat-china">中国朝代</span>
+        <h3 class="paper-title">宋代皇位传承研究</h3>
+        <p class="paper-desc">皇子夭亡率39%催生养子继承制——制度补救如何在绝嗣危机中维系王朝延续。</p>
+      </article>
+      <article class="paper-card" data-category="china">
+        <span class="paper-tag cat-china">中国朝代</span>
+        <h3 class="paper-title">元代皇位传承研究</h3>
+        <p class="paper-desc">忽里勒台推举制与中原嫡长制的双重冲突——十年换六帝的制度真空与内战频仍。</p>
+      </article>
+      <article class="paper-card" data-category="china">
+        <span class="paper-tag cat-china">中国朝代</span>
+        <h3 class="paper-title">明清皇位传承研究</h3>
+        <p class="paper-desc">从明代的秘密建储到清代的雍正密折制度——帝制晚期继承制度的成熟与僵化。</p>
+      </article>
+      <article class="paper-card" data-category="china">
+        <span class="paper-tag cat-china">中国朝代</span>
+        <h3 class="paper-title">中国五大朝代皇位传承制度比较研究</h3>
+        <p class="paper-desc">汉、唐、宋、明、清五朝制度设计的系统比较——嫡长制的千年演进轨迹与核心教训。</p>
+      </article>
+
+      <!-- East Asia -->
+      <article class="paper-card" data-category="eastasia" data-component="paper-card-eastasia">
+        <span class="paper-tag cat-eastasia">东亚</span>
+        <h3 class="paper-title">日本天皇传承制度研究</h3>
+        <p class="paper-desc">万世一系的皇统神话与现实中的退位、院政、幕府架空——日本天皇制的独特传承逻辑。</p>
+      </article>
+      <article class="paper-card" data-category="eastasia">
+        <span class="paper-tag cat-eastasia">东亚</span>
+        <h3 class="paper-title">日本首相权力传承制度研究</h3>
+        <p class="paper-desc">从明治宪法到战后体制——日本内阁总理大臣的权力交接与派阀政治的制度性博弈。</p>
+      </article>
+      <article class="paper-card" data-category="eastasia">
+        <span class="paper-tag cat-eastasia">东亚</span>
+        <h3 class="paper-title">朝鲜王朝皇位传承研究</h3>
+        <p class="paper-desc">宗法制的严格实践——朝鲜王朝五百年的嫡长继承、世孙制度与党争对传承的影响。</p>
+      </article>
+      <article class="paper-card" data-category="eastasia">
+        <span class="paper-tag cat-eastasia">东亚</span>
+        <h3 class="paper-title">越南各朝代皇位传承研究</h3>
+        <p class="paper-desc">中国制度的移植与本土化——越南李、陈、黎、阮诸朝的继承制度演变与权力博弈。</p>
+      </article>
+
+      <!-- Europe -->
+      <article class="paper-card" data-category="europe" data-component="paper-card-europe">
+        <span class="paper-tag cat-europe">欧洲</span>
+        <h3 class="paper-title">拜占庭帝国皇位传承研究</h3>
+        <p class="paper-desc">1058年、13个朝代、93位皇帝——共治皇帝制度下的合法性建构与持续性篡位悖论。</p>
+      </article>
+      <article class="paper-card" data-category="europe">
+        <span class="paper-tag cat-europe">欧洲</span>
+        <h3 class="paper-title">英国君主传承制度研究</h3>
+        <p class="paper-desc">从诺曼征服到温莎王朝——长子继承制、议会介入与王位继承法的千年演进。</p>
+      </article>
+      <article class="paper-card" data-category="europe">
+        <span class="paper-tag cat-europe">欧洲</span>
+        <h3 class="paper-title">法国国家元首传承制度研究</h3>
+        <p class="paper-desc">从卡佩王朝的世袭到第五共和国的宪政选举——法国权力合法性来源的根本转型。</p>
+      </article>
+      <article class="paper-card" data-category="europe">
+        <span class="paper-tag cat-europe">欧洲</span>
+        <h3 class="paper-title">德国皇位传承制度研究</h3>
+        <p class="paper-desc">选帝侯制度与神圣罗马帝国的选举传统——德意志权力传承的独特联邦式路径。</p>
+      </article>
+      <article class="paper-card" data-category="europe">
+        <span class="paper-tag cat-europe">欧洲</span>
+        <h3 class="paper-title">俄国沙皇传承制度研究</h3>
+        <p class="paper-desc">从留里克到罗曼诺夫——沙皇俄国的继承危机、宫廷政变与彼得大帝继承法的反复。</p>
+      </article>
+      <article class="paper-card" data-category="europe">
+        <span class="paper-tag cat-europe">欧洲</span>
+        <h3 class="paper-title">意大利王国皇位传承制度研究</h3>
+        <p class="paper-desc">萨伏伊王朝的统一遗产与继承制度——从复兴运动到二战后君主制的废除。</p>
+      </article>
+      <article class="paper-card" data-category="europe">
+        <span class="paper-tag cat-europe">欧洲</span>
+        <h3 class="paper-title">西班牙王国皇位传承制度研究</h3>
+        <p class="paper-desc">哈布斯堡与波旁的交替——卡洛斯战争、共和中断与胡安·卡洛斯的民主转型。</p>
+      </article>
+      <article class="paper-card" data-category="europe">
+        <span class="paper-tag cat-europe">欧洲</span>
+        <h3 class="paper-title">葡萄牙王国皇位传承制度研究</h3>
+        <p class="paper-desc">从阿方索一世到布拉干萨——伊比利亚邻国的继承制度与1580年王位危机。</p>
+      </article>
+      <article class="paper-card" data-category="europe">
+        <span class="paper-tag cat-europe">欧洲</span>
+        <h3 class="paper-title">荷兰王国皇位传承制度研究</h3>
+        <p class="paper-desc">奥兰治家族的执政传统——从共和国执政到君主立宪制的独特转型路径。</p>
+      </article>
+      <article class="paper-card" data-category="europe">
+        <span class="paper-tag cat-europe">欧洲</span>
+        <h3 class="paper-title">古希腊领导人制度研究</h3>
+        <p class="paper-desc">民主选举、僭主政治与斯巴达双王制——古希腊多元领导体制的起源与制度实验。</p>
+      </article>
+
+      <!-- Islamic -->
+      <article class="paper-card" data-category="islamic" data-component="paper-card-islamic">
+        <span class="paper-tag cat-islamic">伊斯兰</span>
+        <h3 class="paper-title">哈里发帝国权力传承研究</h3>
+        <p class="paper-desc">从正统哈里发到倭马亚、阿巴斯——伊斯兰世界继承制度的神学争议与政治实践。</p>
+      </article>
+      <article class="paper-card" data-category="islamic">
+        <span class="paper-tag cat-islamic">伊斯兰</span>
+        <h3 class="paper-title">奥斯曼帝国苏丹传承制度研究</h3>
+        <p class="paper-desc">兄弟相残的合法化——从开放继承到笼中囚禁制度（Kafes）的独特权力交接机制。</p>
+      </article>
+      <article class="paper-card" data-category="islamic">
+        <span class="paper-tag cat-islamic">伊斯兰</span>
+        <h3 class="paper-title">莫卧儿帝国皇位传承研究</h3>
+        <p class="paper-desc">无固定继承法的帝国——每一代莫卧儿皇帝的去世都意味着王子间的血腥战争。</p>
+      </article>
+      <article class="paper-card" data-category="islamic">
+        <span class="paper-tag cat-islamic">伊斯兰</span>
+        <h3 class="paper-title">蒙古帝国及四大汗国皇位传承研究</h3>
+        <p class="paper-desc">忽里勒台制的衰落——从成吉思汗的草原民主到四大汗国的世袭分裂与继承危机。</p>
+      </article>
+
+      <!-- Religion -->
+      <article class="paper-card" data-category="religion" data-component="paper-card-religion">
+        <span class="paper-tag cat-religion">宗教</span>
+        <h3 class="paper-title">天主教教皇传承制度研究</h3>
+        <p class="paper-desc">枢机主教团的选举机制——两千年教皇传承中从公会议到秘密会议制度的制度演化。</p>
+      </article>
+      <article class="paper-card" data-category="religion">
+        <span class="paper-tag cat-religion">宗教</span>
+        <h3 class="paper-title">西藏达赖喇嘛与班禅喇嘛传承制度研究</h3>
+        <p class="paper-desc">活佛转世的独特制度——从灵童寻访到金瓶掣签，藏传佛教的超自然权力传承逻辑。</p>
+      </article>
+
+      <!-- Modern -->
+      <article class="paper-card" data-category="modern" data-component="paper-card-modern">
+        <span class="paper-tag cat-modern">现代</span>
+        <h3 class="paper-title">苏联与俄罗斯领导人传承研究</h3>
+        <p class="paper-desc">从列宁到普京——一党制下的接班人困境、老人政治与制度化交接的反复探索。</p>
+      </article>
+      <article class="paper-card" data-category="modern">
+        <span class="paper-tag cat-modern">现代</span>
+        <h3 class="paper-title">韩国总统权力传承制度研究</h3>
+        <p class="paper-desc">民主化后的总统任期制——从军事政变到弹劾制度，韩国权力交接的曲折历程。</p>
+      </article>
+      <article class="paper-card" data-category="modern">
+        <span class="paper-tag cat-modern">现代</span>
+        <h3 class="paper-title">阿根廷领导人权力传承制度研究</h3>
+        <p class="paper-desc">军事政变与民主回归——阿根廷总统制在民粹、军政府与宪政之间的反复震荡。</p>
+      </article>
+      <article class="paper-card" data-category="modern">
+        <span class="paper-tag cat-modern">现代</span>
+        <h3 class="paper-title">伊朗权力传承制度研究</h3>
+        <p class="paper-desc">从巴列维王朝到伊斯兰共和国——神权政治下最高领袖继承制度的独特设计。</p>
+      </article>
+
+      <!-- Comparative -->
+      <article class="paper-card" data-category="comparative" data-component="paper-card-comparative">
+        <span class="paper-tag cat-comparative">比较研究</span>
+        <h3 class="paper-title">古今中外权力传承制度比较研究</h3>
+        <p class="paper-desc">八大制度案例的系统比较——跨越两千余年、东西方文明的核心制度设计优劣与历史教训。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHILOSOPHY ===== -->
+<section class="philosophy" id="philosophy" data-component="philosophy-section">
+  <div class="container">
+    <div class="fade-in">
+      <div class="section-label">Institutional Philosophy</div>
+      <h2 class="section-title">研究理念</h2>
+    </div>
+
+    <!-- Ornamental SVG -->
+    <div class="philosophy-ornament" aria-hidden="true">
+      <svg width="280" height="400" viewBox="0 0 280 400" fill="none" stroke="currentColor" stroke-width="0.5">
+        <circle cx="140" cy="200" r="120" opacity="0.4"/>
+        <circle cx="140" cy="200" r="80" opacity="0.3"/>
+        <circle cx="140" cy="200" r="40" opacity="0.2"/>
+        <path d="M140 80v240M20 200h240" opacity="0.15"/>
+        <path d="M56 116l168 168M56 284l168-168" opacity="0.1"/>
+      </svg>
+    </div>
+
+    <div class="philosophy-quotes fade-in" data-component="philosophy-quotes">
+      <div class="philosophy-quote">
+        <p class="philosophy-quote-text">最高权力的交接，是人类政治文明的核心难题。无论古代帝国的皇位传承，还是现代国家的领导人更替，其本质都是同一个问题：如何以制度化的方式，实现权力的平稳、合法、有效转移。</p>
+        <span class="philosophy-quote-source">—— 研究导论</span>
+      </div>
+      <div class="philosophy-quote">
+        <p class="philosophy-quote-text">再好的继承原则，如果没有配套的权力制衡机制，也无法保障传承的稳定。制度不是一个孤立的设计，而是一个需要相互支撑的系统。</p>
+        <span class="philosophy-quote-source">—— 比较研究结论</span>
+      </div>
+      <div class="philosophy-quote">
+        <p class="philosophy-quote-text">没有制度约束的权力传承，必然沦为暴力角逐。历史反复证明，制度的缺失比制度的不完善更加危险。</p>
+        <span class="philosophy-quote-source">—— 唐代制度分析</span>
+      </div>
+    </div>
+
+    <div class="philosophy-method fade-in" data-component="methodology-grid">
+      <div class="method-item">
+        <h3 class="method-item-title">跨文明比较法</h3>
+        <p class="method-item-desc">拒绝单一文明的孤立分析。通过将东方世袭制与西方选举制、古代帝国与现代国家并置比较，揭示制度设计的普遍规律与文明特殊性。</p>
+      </div>
+      <div class="method-item">
+        <h3 class="method-item-title">四维评估框架</h3>
+        <p class="method-item-desc">对每位统治者的权力交接从继承合法性、接班人指定、不良事件、传承正常性四个维度进行标准化评估，确保分析的严谨性与可比性。</p>
+      </div>
+      <div class="method-item">
+        <h3 class="method-item-title">制度设计视角</h3>
+        <p class="method-item-desc">聚焦于制度本身的设计优劣，而非罗列具体史实数据。关注制度的激励结构、制衡机制与执行可行性，提炼可迁移的设计原则。</p>
+      </div>
+      <div class="method-item">
+        <h3 class="method-item-title">长时段分析</h3>
+        <p class="method-item-desc">跨越两千余年的历史纵深，追踪同一制度在不同时代的适应性变化，理解制度演进的路径依赖与断裂式变革。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" data-component="site-footer">
+  <div class="container">
+    <!-- Footer ornamental SVG divider -->
+    <div class="footer-divider-svg" aria-hidden="true">
+      <svg viewBox="0 0 1100 16" fill="none" stroke="currentColor" stroke-width="0.5">
+        <line x1="0" y1="8" x2="490" y2="8" opacity="0.3"/>
+        <circle cx="510" cy="8" r="3" opacity="0.3"/>
+        <circle cx="530" cy="8" r="2" opacity="0.25"/>
+        <circle cx="550" cy="8" r="4" fill="currentColor" opacity="0.15"/>
+        <circle cx="570" cy="8" r="2" opacity="0.25"/>
+        <circle cx="590" cy="8" r="3" opacity="0.3"/>
+        <line x1="610" y1="8" x2="1100" y2="8" opacity="0.3"/>
+      </svg>
+    </div>
+
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">WorldLeader Research</div>
+        <div class="footer-brand-sub">全球权力传承研究院</div>
+      </div>
+      <div class="footer-links">
+        <a href="#research">Research</a>
+        <a href="#scope">Scope</a>
+        <a href="#philosophy">Philosophy</a>
+      </div>
+    </div>
+    <p class="footer-copyright">&copy; 2024 WorldLeader Research. Comparative studies on power succession across civilizations.</p>
+  </div>
+</footer>
+
+<script>
+/* ===== THEME TOGGLE ===== */
+(function() {
+  var toggle = document.getElementById('themeToggle');
+  var html = document.documentElement;
+  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (prefersDark) html.setAttribute('data-theme', 'dark');
+  toggle.addEventListener('click', function() {
+    var isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  });
+})();
+
+/* ===== STICKY HEADER ===== */
+(function() {
+  var header = document.getElementById('header');
+  var scrolled = false;
+  window.addEventListener('scroll', function() {
+    var shouldScroll = window.scrollY > 80;
+    if (shouldScroll !== scrolled) {
+      scrolled = shouldScroll;
+      header.classList.toggle('scrolled', scrolled);
+    }
+  }, { passive: true });
+})();
+
+/* ===== PAPER FILTER ===== */
+(function() {
+  var buttons = document.querySelectorAll('.filter-btn');
+  var cards = document.querySelectorAll('.paper-card');
+  buttons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var filter = this.getAttribute('data-filter');
+      buttons.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      cards.forEach(function(card) {
+        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+})();
+
+/* ===== MOBILE NAV ===== */
+function closeMobileNav() {
+  document.getElementById('mobileNav').classList.remove('open');
+}
+(function() {
+  var btn = document.getElementById('mobileMenuBtn');
+  var close = document.getElementById('mobileNavClose');
+  btn.addEventListener('click', function() {
+    document.getElementById('mobileNav').classList.add('open');
+  });
+  close.addEventListener('click', closeMobileNav);
+})();
+
+/* ===== SCROLL ANIMATIONS ===== */
+(function() {
+  var els = document.querySelectorAll('.fade-in');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(el) { observer.observe(el); });
+})();
+
+/* ===== COVERAGE BAR ANIMATION ===== */
+(function() {
+  var bars = document.querySelectorAll('.coverage-bar-fill');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var target = entry.target;
+        var w = target.getAttribute('data-width');
+        target.style.width = w;
+        observer.unobserve(target);
+      }
+    });
+  }, { threshold: 0.3 });
+  bars.forEach(function(bar) { observer.observe(bar); });
+})();
+</script>
+</body>
+</html>
