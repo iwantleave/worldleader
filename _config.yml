@@ -1,0 +1,38 @@
+# ─────────────────────────────────────────────────────────────
+# WorldLeader Research — GitHub Pages 配置
+# 全部由 GitHub 自动构建，本地无需 Ruby / 无需构建步骤。
+# ─────────────────────────────────────────────────────────────
+
+title: 全球权力传承研究
+description: 横跨两千年、覆盖四十个政体的最高权力交接制度比较研究
+lang: zh-CN
+
+# GitHub Pages 官方支持主题（可在仓库 Settings → Pages → Theme 中随时更换）
+# 可选：primer / minima / cayman / architect / merlot / midnight /
+#       minimal / modernist / slate / solarized / dinky / hacker /
+#       leap-day / time-machine / tweek
+theme: jekyll-theme-primer
+
+# 项目站点路径：https://iwantleave.github.io/worldleader/
+# 若日后绑定自定义域名，请将此行改为 baseurl: ""
+baseurl: "/worldleader"
+url: "https://iwantleave.github.io"
+
+# GitHub Pages 默认已启用 jekyll-optional-front-matter 与
+# jekyll-titles-from-headings：无 front matter 的 .md 亦会转 HTML，
+# 并从首个 # 标题自动取 title。因此 40 篇研究源文件无需任何改动。
+#
+# 另有 jekyll-relative-links：目录页中 [xxx](xxx.md) 会被重写为 /xxx.html
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# 设计稿原文件保留在仓库中，但不作为站点页面发布
+exclude:
+  - design
+  - tools
+  - Gemfile
+  - Gemfile.lock
+  - vendor

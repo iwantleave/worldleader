@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'zh-CN' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.title and page.url != '/' %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+<meta name="description" content="{{ page.description | default: site.description }}">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<style>
+  /* ── 站点框架（仅导航与版式，正文样式仍由所选主题提供） ── */
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body { margin: 0; }
+
+  .wl-nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    padding: 12px 24px;
+    background: #fff;
+    border-bottom: 1px solid rgba(0,0,0,.12);
+  }
+  .wl-nav a { color: #24292f; text-decoration: none; }
+  .wl-brand { font-weight: 600; font-size: 17px; letter-spacing: .3px; white-space: nowrap; }
+  .wl-links { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; }
+  .wl-links a { color: #57606a; padding: 3px 0; border-bottom: 2px solid transparent; }
+  .wl-links a:hover { color: #0969da; border-bottom-color: #0969da; }
+
+  .wl-main { max-width: 1012px; margin: 0 auto; padding: 32px 24px 80px; }
+  .wl-back { margin: 0 0 20px; font-size: 14px; }
+  .wl-back a { color: #57606a; text-decoration: none; }
+  .wl-back a:hover { color: #0969da; }
+
+  /* 宽表格横向滚动，避免移动端溢出 */
+  .markdown-body table {
+    display: block; width: max-content; max-width: 100%; overflow: auto;
+  }
+  .markdown-body h1 { border-bottom: 1px solid rgba(0,0,0,.12); padding-bottom: .3em; }
+
+  .wl-footer {
+    border-top: 1px solid rgba(0,0,0,.12);
+    padding: 28px 24px; text-align: center;
+    font-size: 13px; color: #57606a;
+  }
+  .wl-footer a { color: #0969da; }
+
+  @media (max-width: 640px) {
+    .wl-nav { padding: 10px 16px; }
+    .wl-main { padding: 20px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="wl-nav">
+  <a class="wl-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  <nav class="wl-links">
+    <a href="{{ '/' | relative_url }}">总目</a>
+    <a href="{{ '/' | relative_url }}#china">中国帝制</a>
+    <a href="{{ '/' | relative_url }}#eastasia">东亚</a>
+    <a href="{{ '/' | relative_url }}#europe">欧洲</a>
+    <a href="{{ '/' | relative_url }}#islamic">伊斯兰与内陆亚洲</a>
+    <a href="{{ '/' | relative_url }}#religion">宗教传承</a>
+    <a href="{{ '/' | relative_url }}#modern">现当代国家</a>
+    <a href="{{ '/' | relative_url }}#comparative">综合比较</a>
+    <a href="{{ '/' | relative_url }}#method">方法</a>
+  </nav>
+</header>
+
+<div class="wl-main">
+  {% if page.url != '/' and page.title %}
+  <p class="wl-back"><a href="{{ '/' | relative_url }}">← 返回研究总目</a></p>
+  {% endif %}
+  <div class="markdown-body">
+    {{ content }}
+  </div>
+</div>
+
+<footer class="wl-footer">
+  {{ site.title }} · {{ site.description }}<br>
+  <a href="https://github.com/iwantleave/worldleader">在 GitHub 上查看本项目</a>
+</footer>
+
+</body>
+</html>
